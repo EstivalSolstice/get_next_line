@@ -6,7 +6,7 @@
 /*   By: joltmann <joltmann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 19:03:05 by joltmann          #+#    #+#             */
-/*   Updated: 2024/10/22 15:54:00 by joltmann         ###   ########.fr       */
+/*   Updated: 2024/10/25 14:34:55 by joltmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	remove_fd_node(t_fd_list **head, int fd)
 	}
 }
 
-char	*read_and_store(int fd, char **save)
+char	*read_one_line(int fd, char **save)
 {
 	char	*buf;
 	char	*tmp;
@@ -71,16 +71,15 @@ char	*read_and_store(int fd, char **save)
 	{
 		bytes_read = read(fd, buf, BUFFER_SIZE);
 		if (bytes_read < 0)
-			return (free(buf), free(*save), *save = NULL, (NULL));
-		if (bytes_read > 0)
-		{
-			buf[bytes_read] = '\0';
-			tmp = ft_strjoin(*save, buf);
-			if (!tmp)
-				return (free(buf), free(*save), *save = NULL, (NULL));
-			free(*save);
-			*save = tmp;
-		}
+			return (free(buf), free(*save), *save = NULL, NULL);
+		buf[bytes_read] = '\0';
+		tmp = ft_strjoin(*save, buf);
+		if (!tmp)
+			return (free(buf), free(*save), *save = NULL, NULL);
+		free(*save);
+		*save = tmp;
+		if (ft_strchr(*save, '\n'))
+			break ;
 	}
 	return (free(buf), *save);
 }
@@ -114,7 +113,7 @@ char	*get_next_line(int fd)
 	current = get_fd_node(&head, fd);
 	if (!current)
 		return (remove_fd_node(&head, fd), NULL);
-	current->save = read_and_store(fd, &current->save);
+	current->save = read_one_line(fd, &current->save);
 	if (!current->save)
 		return (remove_fd_node(&head, fd), NULL);
 	line = extract_line(&current->save);

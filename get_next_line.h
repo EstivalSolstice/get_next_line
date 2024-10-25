@@ -6,7 +6,7 @@
 /*   By: joltmann <joltmann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 19:03:25 by joltmann          #+#    #+#             */
-/*   Updated: 2024/10/19 12:41:27 by joltmann         ###   ########.fr       */
+/*   Updated: 2024/10/25 16:09:10 by joltmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define GET_NEXT_LINE_H
 
 # include <stddef.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
@@ -65,20 +65,22 @@ void					remove_fd_node(t_fd_list **head, int fd);
 /* ---------- Core functions to read and extract lines ---------- */
 
 /**
- * @brief Reads data from the file and stores it in the save buffer.
+ * @brief Reads data from the file until a newline or buffer end,
+	storing it in save.
  *
  * @param fd The file descriptor to read from.
- * @param save A double pointer to the save buffer.
+ * @param save A double pointer to the buffer storing the current line.
  *
- * @return A pointer to the updated save buffer, or NULL on failure.
+ * @return A pointer to the updated save buffer with the current line,
+	or NULL on failure.
  */
-char					*read_and_store(int fd, char **save);
+char					*read_one_line(int fd, char **save);
 
 /**
  * @brief Extracts a line from the saved buffer.
  *
  * @param save A double pointer to the saved buffer.
- * 
+ *
  * @return A pointer to the extracted line, or NULL on failure.
  */
 char					*extract_line(char **save);
@@ -88,7 +90,7 @@ char					*extract_line(char **save);
  *
  * @param save The saved buffer to read from.
  * @param line_length A pointer to store the length of the line.
- * 
+ *
  * @return A pointer to the allocated line, or NULL on failure.
  */
 char					*allocate_and_find_line(char *save, int *line_length);
@@ -108,7 +110,7 @@ void					copy_line(char *line, char *save);
  *
  * @param s1 The first string.
  * @param s2 The second string.
- * 
+ *
  * @return A pointer to the newly allocated joined string, or NULL on failure.
  */
 char					*ft_strjoin(char *s1, char *s2);
@@ -117,7 +119,7 @@ char					*ft_strjoin(char *s1, char *s2);
  * @brief Duplicates a string and returns a pointer to the new string.
  *
  * @param s The string to duplicate.
- * 
+ *
  * @return A pointer to the newly allocated string, or NULL on failure.
  */
 char					*ft_strdup(const char *s);
