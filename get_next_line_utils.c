@@ -6,7 +6,7 @@
 /*   By: joltmann <joltmann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 19:03:05 by joltmann          #+#    #+#             */
-/*   Updated: 2024/10/22 15:53:40 by joltmann         ###   ########.fr       */
+/*   Updated: 2024/10/27 19:51:01 by joltmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	copy_line(char *line, char *save)
 	line[i] = '\0';
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_gnl_strjoin(char *s1, char *s2)
 {
 	char	*joined;
 	size_t	len1;
@@ -56,9 +56,9 @@ char	*ft_strjoin(char *s1, char *s2)
 	size_t	i;
 
 	if (!s1)
-		return (ft_strdup(s2));
+		return (ft_gnl_strdup(s2));
 	if (!s2)
-		return (ft_strdup(s1));
+		return (ft_gnl_strdup(s1));
 	len1 = 0;
 	len2 = 0;
 	while (s1[len1] != '\0')
@@ -76,7 +76,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (joined[i] = '\0', joined);
 }
 
-char	*ft_strdup(const char *src)
+char	*ft_gnl_strdup(const char *src)
 {
 	int		index;
 	int		len;
@@ -99,7 +99,7 @@ char	*ft_strdup(const char *src)
 	return (dst[index] = '\0', dst);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_gnl_strchr(const char *s, int c)
 {
 	if (!s)
 		return (NULL);

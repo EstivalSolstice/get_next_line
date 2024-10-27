@@ -6,7 +6,7 @@
 /*   By: joltmann <joltmann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 19:03:25 by joltmann          #+#    #+#             */
-/*   Updated: 2024/10/25 16:09:10 by joltmann         ###   ########.fr       */
+/*   Updated: 2024/10/27 19:50:01 by joltmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void					copy_line(char *line, char *save);
  *
  * @return A pointer to the newly allocated joined string, or NULL on failure.
  */
-char					*ft_strjoin(char *s1, char *s2);
+char					*ft_gnl_strjoin(char *s1, char *s2);
 
 /**
  * @brief Duplicates a string and returns a pointer to the new string.
@@ -122,7 +122,7 @@ char					*ft_strjoin(char *s1, char *s2);
  *
  * @return A pointer to the newly allocated string, or NULL on failure.
  */
-char					*ft_strdup(const char *s);
+char					*ft_gnl_strdup(const char *s);
 
 /**
  * @brief Finds the first occurrence of a character in a string.
@@ -132,6 +132,6 @@ char					*ft_strdup(const char *s);
  * @return	A pointer to the first occurrence of the character,
  * 			or NULL if not found.
  */
-char					*ft_strchr(const char *s, int c);
+char					*ft_gnl_strchr(const char *s, int c);
 
 #endif

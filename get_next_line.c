@@ -6,7 +6,7 @@
 /*   By: joltmann <joltmann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 19:03:05 by joltmann          #+#    #+#             */
-/*   Updated: 2024/10/25 14:34:55 by joltmann         ###   ########.fr       */
+/*   Updated: 2024/10/27 19:50:46 by joltmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,18 +67,18 @@ char	*read_one_line(int fd, char **save)
 	if (!buf)
 		return (NULL);
 	bytes_read = 1;
-	while (!ft_strchr(*save, '\n') && bytes_read > 0)
+	while (!ft_gnl_strchr(*save, '\n') && bytes_read > 0)
 	{
 		bytes_read = read(fd, buf, BUFFER_SIZE);
 		if (bytes_read < 0)
 			return (free(buf), free(*save), *save = NULL, NULL);
 		buf[bytes_read] = '\0';
-		tmp = ft_strjoin(*save, buf);
+		tmp = ft_gnl_strjoin(*save, buf);
 		if (!tmp)
 			return (free(buf), free(*save), *save = NULL, NULL);
 		free(*save);
 		*save = tmp;
-		if (ft_strchr(*save, '\n'))
+		if (ft_gnl_strchr(*save, '\n'))
 			break ;
 	}
 	return (free(buf), *save);
@@ -96,7 +96,7 @@ char	*extract_line(char **save)
 	if (!line)
 		return (NULL);
 	copy_line(line, *save);
-	tmp = ft_strdup(*save + line_length);
+	tmp = ft_gnl_strdup(*save + line_length);
 	if (!tmp)
 		return (free(line), (NULL));
 	return (free(*save), *save = tmp, line);
